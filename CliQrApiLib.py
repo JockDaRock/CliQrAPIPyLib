@@ -81,7 +81,7 @@ def getVNCsession(user, key, reqURL):
     return vnc
 
 
-#Delets all current running Jobs
+#Terminates all current running Jobs
 def deleteAllJobs():
     allJobs = getAllJobs()
     allIds = allJobs.keys()
