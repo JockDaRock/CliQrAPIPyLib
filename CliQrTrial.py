@@ -6,16 +6,15 @@ import threading
 requests.packages.urllib3.disable_warnings()
 user = "cliqradmin"
 
-username = "admin@cliqrtech.com,1"
-passwd = "cliqr"
+username = "YourUser@cliqrtech.com,1"
+passwd = "YourPassWord"
 
-baseURL = "https://64.103.26.61:10000/v1"
-userid = "2"
+baseURL = "https://<your URL/IP here>/v1"
+userid = "100000"
 
 baseHeaders = {"Accept": "application/json",
                "Content-Type": "application/json"}
 
-key = "DD17AFF7D18FC5FE"
 
 
 def newAPIkey(userid):
