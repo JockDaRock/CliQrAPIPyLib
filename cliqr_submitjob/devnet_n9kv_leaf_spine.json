@@ -1,0 +1,128 @@
+{
+  "name":"{{name}}",
+  "serviceTierId":"Nexus9000_solo-37",
+  "environment": "Default",
+  "parameters":{
+    "cloudParams":{
+      "cloud":"VMware-default"
+    }
+  },
+  "jobs":[
+    {
+      "serviceTierId":"Nexus9000-40",
+      "parameters":{
+        "cloudParams":{
+          "cloud":"VMware-default",
+          "instance":"Large"
+        }
+      },
+      "nics": [
+        {
+          "id": "ABC3-VL20",
+          "allocationMode": "DHCP",
+          "order": 1,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 2,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 3,
+          "allocatePublicIp": false
+        }
+      ]
+    },
+    {
+      "serviceTierId":"Nexus9000-41",
+      "parameters":{
+        "cloudParams":{
+          "cloud":"VMware-default",
+          "instance":"Large"
+        }
+      },
+      "nics": [
+        {
+          "id": "ABC3-VL20",
+          "allocationMode": "DHCP",
+          "order": 1,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 2,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 3,
+          "allocatePublicIp": false
+        }
+      ]
+    },
+    {
+      "serviceTierId":"Nexus9000-38",
+      "parameters":{
+        "cloudParams":{
+          "cloud":"VMware-default",
+          "instance":"Large"
+        }
+      },
+      "nics": [
+        {
+          "id": "ABC3-VL20",
+          "allocationMode": "DHCP",
+          "order": 1,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 2,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 3,
+          "allocatePublicIp": false
+        }
+      ]
+    },
+    {
+      "serviceTierId":"Nexus9000-39",
+      "parameters":{
+        "cloudParams":{
+          "cloud":"VMware-default",
+          "instance":"Large"
+        }
+      },
+      "nics": [
+        {
+          "id": "ABC3-VL20",
+          "allocationMode": "DHCP",
+          "order": 1,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 2,
+          "allocatePublicIp": false
+        },
+        {
+          "id": "{{network}}",
+          "allocationMode": "DHCP",
+          "order": 3,
+          "allocatePublicIp": false
+        }
+      ]
+    }
+  ]
+}
