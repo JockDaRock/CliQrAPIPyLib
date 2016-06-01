@@ -10,6 +10,8 @@ baseHeaders = {"Accept": "application/json",
                "Content-Type": "application/json"}
 
 
+#Drives the creation of a new API key. Once this is successfully called,
+#the previous API key is revoked.
 def newAPIkey(un, pw, userid):
 
     keyURL = "/users/%s/keys" % userid
@@ -29,6 +31,7 @@ def newAPIkey(un, pw, userid):
     return key
 
 
+#Used to get the Job Detail of a Lab Environment or the Job a specific VM.
 def getJobDet(user, key, id):
     jobURL = "/jobs/%s" % id
     jobReq = requests.get(baseURL + jobURL,
@@ -46,6 +49,8 @@ def isVMRunning(user, key, id):
     return toDeployOrNotToDeploy["status"]
 
 
+#Used to retrieve the Web SSH session URL to login to SSH through any browser window, if
+#VM has SSH access enabled.
 def getSSHsession(user, key, reqURL):
     sshURL = reqURL
 
@@ -60,6 +65,8 @@ def getSSHsession(user, key, reqURL):
     return ssh
 
 
+#Used to retrieve the Web VNC/RDP session URL to login to VNC/RDP through any browser window, if
+#VM has VNC/RDP access enabled.
 def getVNCsession(user, key, reqURL):
     vncURL = reqURL
 
@@ -74,6 +81,7 @@ def getVNCsession(user, key, reqURL):
     return vnc
 
 
+#Delets all current running Jobs
 def deleteAllJobs():
     allJobs = getAllJobs()
     allIds = allJobs.keys()
@@ -89,6 +97,7 @@ def deleteAllJobs():
         print deleteReq
 
 
+#Deletes a specific Lab Environment by JobID
 def deleteLab(user, key, id):
     deletejobURL = "/jobs/%s" % id
     deleteReq = requests.delete(baseURL + deletejobURL,
@@ -99,6 +108,7 @@ def deleteLab(user, key, id):
     return deleteReq
 
 
+#Creation of Lab environment function using Pre-made json Response File
 def createLab(LabName, user, key):
     createURL = "/jobs"
 
@@ -127,12 +137,10 @@ def createLab(LabName, user, key):
     return labID
 
 
-def create10Labs():
-    for i in range(0, 10):
-        createLab(i)
-
-
+#Demo of functionality ran in main function
 def main():
+#The following credentials either have to be obtained through the Web GUI for CliQr or by providing
+#Admin creds (also obtained through the GUI) and then using Admin creds to obtain individual creds.
     user = "YourUser"
 
     userid = "10000000"
@@ -141,32 +149,39 @@ def main():
 
     passwd = "yourPassWord"
 
+#API Key to be used for the duration of the program
     key = newAPIkey(username, passwd, userid)
 
-    """labID = createLab("AdminTest1", user, key)
+#Lab creation using the createLab function
+    labID = createLab("AdminTest1", user, key)
 
+#Job detail of the newly created lab
     jsonResp = getJobDet(user, key, labID)
 
     numVMs = len(jsonResp["jobs"])
     jobIDs = []
     run = True
 
+#populating jobIDs array with jobIDs representing each individual VM
     for i in range(0, numVMs):
         jobIDs.append(jsonResp["jobs"][i]["id"])
 
-    while run == True:
-        for i in jobIDs:
-            vmStatus = isVMRunning(user, key, i)
-            if vmStatus == "JobRunning":
-                vmHostName = getJobDet(user, key, i)
-                sshReq = "https://64.103.26.61:10000/job/service/webssh/%s/%s" % (i, vmHostName["virtualMachines"][0]["hostName"])
-                guacSSH = getSSHsession(user, key, sshReq)
-                print guacSSH
-            else:
-                jobIDs.append(i)
-        run = False"""
+#for loop used to continually check whether individual VMs in Lab Environment are spun up
+#and the once a VM is running the SSH web session URL is put together and printed to console.
+#This will take some time and could be spun up on a separate thread if additional functionality
+#to the main needs to be added.
+    for i in jobIDs:
+        vmStatus = isVMRunning(user, key, i)
+        if vmStatus == "JobRunning":
+            vmHostName = getJobDet(user, key, i)
+            sshReq = "https://64.103.26.61:10000/job/service/webssh/%s/%s" % (i, vmHostName["virtualMachines"][0]["hostName"])
+            guacSSH = getSSHsession(user, key, sshReq)
+            print guacSSH
+        else:
+            jobIDs.append(i)
 
-    print deleteLab(user, key, "1107")
+#Commented out delete section to terminate Lab Environment
+    #print deleteLab(user, key, "1107")
 
 
 if __name__ == '__main__':
