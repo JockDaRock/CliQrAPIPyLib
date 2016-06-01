@@ -18,7 +18,7 @@
       },
       "nics": [
         {
-          "id": "ABC3-VL20",
+          "id": "{{network}}",
           "allocationMode": "DHCP",
           "order": 1,
           "allocatePublicIp": false
@@ -47,7 +47,7 @@
       },
       "nics": [
         {
-          "id": "ABC3-VL20",
+          "id": "{{network}}",
           "allocationMode": "DHCP",
           "order": 1,
           "allocatePublicIp": false
@@ -76,7 +76,7 @@
       },
       "nics": [
         {
-          "id": "ABC3-VL20",
+          "id": "{{network}}",
           "allocationMode": "DHCP",
           "order": 1,
           "allocatePublicIp": false
@@ -105,7 +105,7 @@
       },
       "nics": [
         {
-          "id": "ABC3-VL20",
+          "id": "{{network}}",
           "allocationMode": "DHCP",
           "order": 1,
           "allocatePublicIp": false
