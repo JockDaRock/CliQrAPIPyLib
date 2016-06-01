@@ -4,7 +4,7 @@ import os
 
 requests.packages.urllib3.disable_warnings()
 
-baseURL = "https://64.103.26.61:10000/v1"
+baseURL = "https://<your URL / IP here >/v1"
 
 baseHeaders = {"Accept": "application/json",
                "Content-Type": "application/json"}
@@ -133,13 +133,13 @@ def create10Labs():
 
 
 def main():
-    user = "cliqradmin"
+    user = "YourUser"
 
-    userid = "2"
+    userid = "10000000"
 
-    username = "admin@cliqrtech.com,1"
+    username = "YourUser@cliqrtech.com,1"
 
-    passwd = "cliqr"
+    passwd = "yourPassWord"
 
     key = newAPIkey(username, passwd, userid)
 
